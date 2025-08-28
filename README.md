@@ -1,36 +1,118 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Next.js Frontend App
 
-## Getting Started
+A **Next.js** frontend application using the **App Router**.  
+This project communicates with a backend Express server and requires the backend to be running before starting the frontend.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## 🚀 Features
+
+- ⚡ **Next.js 14+** — Uses the App Router for modern routing and layouts.
+- 🎨 **React 18** — Leveraging the latest features for fast and interactive UIs.
+- 🔗 **API Integration** — Communicates with the backend API.
+- 📦 **Yarn** — Dependency management.
+
+---
+
+## 🛠️ Tech Stack
+
+| Technology | Purpose                   |
+|-----------|---------------------------|
+| Next.js   | React framework for SSR, SSG, and routing |
+| React     | UI components and hooks   |
+| Yarn      | Dependency management     |
+| TypeScript| Type-safe development    |
+
+---
+
+## 📂 Project Structure
+
+```
+├── app/                # App Router entry point
+│   ├── layout.tsx      # Root layout
+│   ├── page.tsx        # Homepage
+│   ├── api/            # API routes if any
+├── components/         # Reusable React components
+├── public/             # Static assets
+├── styles/             # Global styles
+├── .env                # Environment variables
+├── package.json        # Project dependencies and scripts
+├── tsconfig.json       # TypeScript configuration
+└── README.md
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## ⚙️ Installation
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 1. Clone the repository
+```bash
+git clone https://github.com/ehwreck/nooro-fe
+cd nooro-fe
+```
 
-## Learn More
+### 2. Set up the backend
+The frontend requires the backend to be running for API calls.  
+Clone and start the backend server:  
+**Backend repository:** [nooro-be](https://github.com/ehwreck/nooro-be)
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+git clone https://github.com/ehwreck/nooro-be
+cd nooro-be
+yarn install
+yarn dev
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Ensure the backend is running on its default port (or your configured one).
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### 3. Configure environment variables
+In the frontend project root, create a `.env` file and set the backend host information:
+```env
+NEXT_PUBLIC_SERVER_HOST=http://localhost:3000
+```
 
-## Deploy on Vercel
+### 4. Install dependencies
+```bash
+yarn install
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### 5. Start the development server
+```bash
+yarn dev
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+By default, the app runs on **[http://localhost:3001](http://localhost:3001)**.
+
+---
+
+## 🧩 Available Scripts
+
+| Command      | Description                        |
+|-------------|------------------------------------|
+| `yarn dev`  | Starts the Next.js development server |
+| `yarn build`| Builds the project for production |
+| `yarn start`| Starts the production server      |
+
+---
+
+## 🧪 Testing API Communication
+
+1. Start the backend server (see [nooro-be](https://github.com/ehwreck/nooro-be)).  
+2. Set the correct backend URL in `.env`.  
+3. Use tools like **Postman** or the browser's developer console to test requests.
+
+---
+
+## 📄 License
+
+This project is licensed under the **MIT License**.
+
+---
+
+## 📧 Contact
+
+For any questions, feedback, or issues, feel free to reach out:
+
+**Your Name**  
+📧 [erick_trivi1010@hotmail.com](mailto:erick_trivi1010@hotmail.com)  
+🔗 [ehwreck](https://github.com/ehwreck)
