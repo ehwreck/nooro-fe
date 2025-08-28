@@ -3,6 +3,7 @@ type Task = {
   title: string;
   description?: string;
   completed: boolean;
+  color: string;
   createdAt: Date;
   updatedAt: Date;
 }

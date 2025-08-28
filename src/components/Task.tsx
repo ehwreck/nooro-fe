@@ -40,8 +40,16 @@ const Task = (props: TaskProps) => {
     setCompleted(checked);
   }
 
+  const backgroundColor = () => {
+    if(task.color === 'red') return 'bg-red-600';
+    if(task.color === 'blue') return 'bg-blue-600';
+    if(task.color === 'green') return 'bg-green-600';
+    if(task.color === 'yellow') return 'bg-yellow-300';
+    return 'bg-white';
+  }
+
   return (
-    <div className="flex flex-row justify-between items-center h-max p-4 gap-6 border border-solid border-black rounded-md">
+    <div className={`${backgroundColor()} flex flex-row justify-between items-center h-max p-4 gap-6 border border-solid border-black rounded-md`}>
       <div className='flex flex-row items-center gap-6'>
         <EyeIcon />
         <div>
