@@ -1,4 +1,4 @@
-import Task from "@/components/Task"
+import TaskItem from "@/components/TaskItem"
 import type TaskType from "@/types/Task.type";
 
 interface TasksProps {
@@ -12,7 +12,7 @@ const Tasks = (props: TasksProps) => {
     <div className="flex flex-col w-full max-w-1/2 gap-2">
       {
         tasks.map((task: TaskType) => {
-          return <Task key={task.id} task={task} />;
+          return <TaskItem key={task.id} task={task} />;
         })
       }
     </div>

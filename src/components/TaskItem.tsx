@@ -3,6 +3,7 @@ import { useRouter } from 'next/navigation';
 import { useState, useEffect, useRef } from "react";
 import type Task from "@/types/Task.type";
 import EyeIcon from './EyeIcon';
+import Link from 'next/link';
 const SERVER_HOST = process.env.NEXT_PUBLIC_SERVER_HOST;
 
 interface TaskProps {
@@ -51,7 +52,9 @@ const Task = (props: TaskProps) => {
   return (
     <div className={`${backgroundColor()} flex flex-row justify-between items-center h-max p-4 gap-6 border border-solid border-black rounded-md`}>
       <div className='flex flex-row items-center gap-6'>
-        <EyeIcon />
+        <Link href={`/tasks/${task.id}`}>
+          <EyeIcon />
+        </Link>
         <div>
           <p className="text-2xl text-bold">{task.title}</p>
           <p className="text-sm">{task.description}</p>
