@@ -9,10 +9,10 @@ const Tasks = (props: TasksProps) => {
   const { tasks = [] } = props;
 
   return (
-    <div>
+    <div className="flex flex-col w-full max-w-1/2 gap-2">
       {
         tasks.map((task: TaskType) => {
-          return <Task task={task} />
+          return <Task key={task.id} task={task} />;
         })
       }
     </div>

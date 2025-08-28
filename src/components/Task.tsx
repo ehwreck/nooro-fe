@@ -1,6 +1,9 @@
 'use client'
-import { useState } from "react";
+import { useRouter } from 'next/navigation';
+import { useState, useEffect } from "react";
 import type Task from "@/types/Task.type";
+import EyeIcon from './EyeIcon';
+const SERVER_HOST = process.env.NEXT_PUBLIC_SERVER_HOST;
 
 interface TaskProps {
   task: Task
@@ -8,15 +11,42 @@ interface TaskProps {
 
 const Task = (props: TaskProps) => {
   const { task } = props;
+  const router = useRouter();
 
   const [completed, setCompleted] = useState<boolean>(task.completed);
 
+  useEffect(() => {
+    fetch(`/${SERVER_HOST}/tasks/${task.id}`, {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({...task, completed})
+    }).then(res => {
+      if(!res.ok){
+        return console.log("Unable to update status for task")
+      }
+      router.refresh();
+      return res.json()
+    })
+  }, [completed])
+
+  const clickHandler = (checked: boolean) => {
+    setCompleted(checked);
+  }
+
   return (
-    <div>
-      <input type="checkbox" checked={completed} name="completed"/>
-      <div>
-        <p>{task.title}</p>
-        <p>{task.description}</p>
+    <div className="flex flex-row justify-between items-center h-max p-4 gap-6 border border-solid border-black rounded-md">
+      <div className='flex flex-row items-center gap-6'>
+        <EyeIcon />
+        <div>
+          <p className="text-2xl text-bold">{task.title}</p>
+          <p className="text-sm">{task.description}</p>
+        </div>
+      </div>
+      <div className="flex flex-row items-center gap-2">
+        <input type="checkbox" checked={completed} id="completed" name="completed" onChange={(e) => clickHandler(e.target.checked)}/>
+        <label htmlFor="completed">Completed</label>
       </div>
     </div>
   )
