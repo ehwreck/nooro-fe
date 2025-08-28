@@ -7,7 +7,6 @@ const Page = async () => {
   const tasks = await data.json().then(data => data.tasks);
 
   const completed = tasks.filter((task: Task) => task.completed)
-  console.log("I rendered")
 
   return (
     <div className="flex flex-col bg-white w-screen h-screen text-black items-center p-10">

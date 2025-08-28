@@ -1,6 +1,6 @@
 'use client'
 import { useRouter } from 'next/navigation';
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import type Task from "@/types/Task.type";
 import EyeIcon from './EyeIcon';
 const SERVER_HOST = process.env.NEXT_PUBLIC_SERVER_HOST;
@@ -10,25 +10,30 @@ interface TaskProps {
 }
 
 const Task = (props: TaskProps) => {
+  const didMount = useRef(false);
   const { task } = props;
   const router = useRouter();
 
   const [completed, setCompleted] = useState<boolean>(task.completed);
 
   useEffect(() => {
-    fetch(`/${SERVER_HOST}/tasks/${task.id}`, {
-      method: "POST",
-      headers: {
-        'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({...task, completed})
-    }).then(res => {
-      if(!res.ok){
-        return console.log("Unable to update status for task")
-      }
-      router.refresh();
-      return res.json()
-    })
+    if (didMount.current) {
+      fetch(`${SERVER_HOST}/tasks/${task.id}`, {
+        method: "PUT",
+        headers: {
+          'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({task:{...task, completed}})
+      }).then(res => {
+        if(!res.ok){
+          return console.log("Unable to update status for task")
+        }
+        router.refresh();
+        return res.json()
+      })
+    } else {
+      didMount.current = true;
+    }
   }, [completed])
 
   const clickHandler = (checked: boolean) => {
